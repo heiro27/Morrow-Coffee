@@ -66,7 +66,8 @@ export default function Navbar() {
             Order Now
           </button>
 
-          <button
+          <Link
+            href="/shopping-bag"
             aria-label="Shopping bag"
             className="rounded-full p-2 transition-colors hover:bg-[#F7EEDF]"
           >
@@ -74,7 +75,7 @@ export default function Navbar() {
               size={21}
               strokeWidth={1.7}
             />
-          </button>
+          </Link>
 
           <button
             onClick={() => setOpen(!open)}
