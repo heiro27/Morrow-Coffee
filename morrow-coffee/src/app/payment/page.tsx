@@ -13,6 +13,7 @@ import {
   Trash2,
 } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import Navbar from "@/src/components/Navbar";
 
@@ -73,6 +74,7 @@ const initialItems: CartItem[] = [
 
 export default function PaymentPage() {
   const [items, setItems] = useState<CartItem[]>(initialItems);
+  const router = useRouter();
 
   const [paymentMethod, setPaymentMethod] =
     useState<PaymentMethod>("card");
@@ -131,12 +133,8 @@ export default function PaymentPage() {
   const handlePayNow = () => {
     setIsProcessing(true);
 
-    setTimeout(() => {
-      setIsProcessing(false);
-
-      alert(
-        "Payment successful! Your Morrow Coffee order has been confirmed."
-      );
+   setTimeout(() => {
+    router.push("/confirmation");
     }, 900);
   };
 
