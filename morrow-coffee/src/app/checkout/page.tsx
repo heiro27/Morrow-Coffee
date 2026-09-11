@@ -24,6 +24,7 @@ import AmericanExpressIcon from "@/src/components/icons/AmericanExpressIcon";
 
 import GcashIcon from "@/src/components/icons/GcashIcon";
 import CashOnDeliveryIcon from "@/src/components/icons/CashOnDeliveryIcon";
+import { useRouter } from "next/navigation";
 
 type PaymentMethod = "card" | "gcash" | "cod";
 
@@ -70,6 +71,7 @@ export default function CheckoutPage() {
     useState<PaymentMethod>("card");
 
   const deliveryFee = 50;
+  const router = useRouter();
 
   const updateQuantity = (id: number, amount: number) => {
     setItems((currentItems) =>
@@ -111,10 +113,6 @@ export default function CheckoutPage() {
 
       <section className="mx-auto w-full max-w-[1500px] px-5 py-10 sm:px-8 lg:px-10 lg:py-12">
 
-        {/* =====================================================
-            HEADER
-        ====================================================== */}
-
         <div>
           <h1 className="font-playfair text-[36px] font-semibold leading-none tracking-[-0.02em] sm:text-[40px]">
             Checkout
@@ -125,13 +123,8 @@ export default function CheckoutPage() {
           </p>
         </div>
 
-        {/* =====================================================
-            CHECKOUT STEPS
-        ====================================================== */}
-
         <div className="mt-7 flex max-w-[520px] items-center">
 
-          {/* STEP 1 */}
 
           <div className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#38251A] text-[12px] text-white">
@@ -145,8 +138,6 @@ export default function CheckoutPage() {
 
           <div className="mx-3 h-px w-12 bg-[#D8C5AF] sm:w-24" />
 
-          {/* STEP 2 */}
-
           <div className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#D8C5AF] text-[12px] text-[#D8C5AF]">
               2
@@ -159,7 +150,6 @@ export default function CheckoutPage() {
 
           <div className="mx-3 h-px w-12 bg-[#D8C5AF] sm:w-24" />
 
-          {/* STEP 3 */}
 
           <div className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[#D8C5AF] text-[12px] text-[#D8C5AF]">
@@ -172,15 +162,7 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        {/* =====================================================
-            MAIN CONTENT
-        ====================================================== */}
-
         <div className="mt-6 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_390px]">
-
-          {/* ===================================================
-              SHIPPING INFORMATION
-          ==================================================== */}
 
           <section className="rounded-[7px] border border-[#D8C5AF] bg-[#F7EEDF] p-6 sm:p-7">
 
@@ -195,8 +177,6 @@ export default function CheckoutPage() {
             </div>
 
             <div className="mt-7 space-y-5">
-
-              {/* FULL NAME */}
 
               <div>
                 <label
@@ -213,8 +193,6 @@ export default function CheckoutPage() {
                   className="font-inter h-12 w-full rounded-[6px] border border-[#D8C5AF] bg-transparent px-4 text-[12px] outline-none placeholder:text-[#6B4F3A] focus:border-[#6B4F3A]"
                 />
               </div>
-
-              {/* EMAIL + PHONE */}
 
               <div className="grid gap-4 sm:grid-cols-2">
 
@@ -252,8 +230,6 @@ export default function CheckoutPage() {
 
               </div>
 
-              {/* ADDRESS */}
-
               <div>
                 <label
                   htmlFor="address"
@@ -269,8 +245,6 @@ export default function CheckoutPage() {
                   className="font-inter h-12 w-full rounded-[6px] border border-[#D8C5AF] bg-transparent px-4 text-[12px] outline-none placeholder:text-[#6B4F3A] focus:border-[#6B4F3A]"
                 />
               </div>
-
-              {/* BARANGAY + CITY */}
 
               <div className="grid gap-4 sm:grid-cols-2">
 
@@ -340,8 +314,6 @@ export default function CheckoutPage() {
 
               </div>
 
-              {/* PROVINCE + POSTAL */}
-
               <div className="grid gap-4 sm:grid-cols-2">
 
                 <div>
@@ -406,7 +378,6 @@ export default function CheckoutPage() {
 
               </div>
 
-              {/* INSTRUCTIONS */}
 
               <div>
                 <label
@@ -424,12 +395,11 @@ export default function CheckoutPage() {
                 />
               </div>
 
-              {/* CONTINUE BUTTON */}
-
               <div className="flex justify-center pt-3">
 
                 <button
                   type="button"
+                  onClick={() => router.push("/payment")}
                   className="font-inter flex h-[44px] w-[235px] items-center justify-center gap-2 rounded-[6px] bg-[#38251A] text-[12px] font-semibold text-white transition hover:bg-[#4A3324]"
                 >
                   Continue to Payment
@@ -445,15 +415,9 @@ export default function CheckoutPage() {
             </div>
           </section>
 
-          {/* ===================================================
-              RIGHT COLUMN
-          ==================================================== */}
 
           <div className="space-y-5">
 
-            {/* =================================================
-                ORDER SUMMARY
-            ================================================== */}
 
             <section className="rounded-[7px] border border-[#D8C5AF] bg-[#F7EEDF] p-5">
 
@@ -512,7 +476,7 @@ export default function CheckoutPage() {
 
                         </div>
 
-                        {/* QUANTITY */}
+
 
                         <div className="mt-4 flex items-center justify-end gap-3">
 
@@ -566,7 +530,6 @@ export default function CheckoutPage() {
                 ))}
               </div>
 
-              {/* TOTALS */}
 
               <div className="border-t border-[#D8C5AF] pt-4">
 
@@ -614,9 +577,6 @@ export default function CheckoutPage() {
 
             </section>
 
-            {/* =================================================
-                PAYMENT METHOD
-            ================================================== */}
 
             <section className="rounded-[7px] border border-[#D8C5AF] bg-[#F7EEDF] p-5">
 
@@ -630,10 +590,6 @@ export default function CheckoutPage() {
 
               <div className="mt-5 space-y-3">
 
-                {/* =================================================
-                    CARD
-                ================================================== */}
-
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("card")}
@@ -643,8 +599,6 @@ export default function CheckoutPage() {
                       : "border-[#D8C5AF] bg-transparent hover:bg-[#F4E8D7]"
                   }`}
                 >
-
-                  {/* RADIO */}
 
                   <span
                     className={`flex h-[23px] w-[23px] shrink-0 items-center justify-center rounded-full border ${
@@ -658,13 +612,10 @@ export default function CheckoutPage() {
                     )}
                   </span>
 
-                  {/* CARD ICON */}
 
                   <div className="ml-3 flex h-10 w-10 shrink-0 items-center justify-center">
                     <CardIcon className="h-[31px] w-[31px]" />
                   </div>
-
-                  {/* TEXT */}
 
                   <div className="ml-3 w-[75px] shrink-0">
 
@@ -676,7 +627,6 @@ export default function CheckoutPage() {
 
                   </div>
 
-                  {/* CARD LOGOS */}
 
                   <div className="ml-auto flex min-w-0 flex-1 items-center justify-end gap-1.5 overflow-hidden">
 
@@ -700,9 +650,6 @@ export default function CheckoutPage() {
 
                 </button>
 
-                {/* =================================================
-                    GCASH
-                ================================================== */}
 
                 <button
                   type="button"
@@ -713,8 +660,6 @@ export default function CheckoutPage() {
                       : "border-[#D8C5AF] bg-transparent hover:bg-[#F4E8D7]"
                   }`}
                 >
-
-                  {/* RADIO */}
 
                   <span
                     className={`flex h-[23px] w-[23px] shrink-0 items-center justify-center rounded-full border ${
@@ -728,13 +673,10 @@ export default function CheckoutPage() {
                     )}
                   </span>
 
-                  {/* MOBILE ICON */}
 
                   <div className="ml-3 flex h-9 w-9 shrink-0 items-center justify-center">
                     <MobileIcon className="h-[28px] w-[28px]" />
                   </div>
-
-                  {/* TEXT */}
 
                   <div className="ml-3 min-w-0 flex-1">
 
@@ -748,7 +690,6 @@ export default function CheckoutPage() {
 
                   </div>
 
-                  {/* GCASH LOGO */}
 
                   <div className="flex h-9 w-12 shrink-0 items-center justify-center">
 
@@ -758,9 +699,6 @@ export default function CheckoutPage() {
 
                 </button>
 
-                {/* =================================================
-                    CASH ON DELIVERY
-                ================================================== */}
 
                 <button
                   type="button"
@@ -771,8 +709,6 @@ export default function CheckoutPage() {
                       : "border-[#D8C5AF] bg-transparent hover:bg-[#F4E8D7]"
                   }`}
                 >
-
-                  {/* RADIO */}
 
                   <span
                     className={`flex h-[23px] w-[23px] shrink-0 items-center justify-center rounded-full border ${
@@ -786,13 +722,9 @@ export default function CheckoutPage() {
                     )}
                   </span>
 
-                  {/* CASH ICON */}
-
                   <div className="ml-3 flex h-9 w-9 shrink-0 items-center justify-center">
                     <CashIcon className="h-[28px] w-[28px]" />
                   </div>
-
-                  {/* TEXT */}
 
                   <div className="ml-3 min-w-0 flex-1">
 
@@ -806,7 +738,6 @@ export default function CheckoutPage() {
 
                   </div>
 
-                  {/* COD LOGO */}
 
                   <div className="flex h-9 w-12 shrink-0 items-center justify-center">
 
@@ -819,10 +750,6 @@ export default function CheckoutPage() {
                 </button>
 
               </div>
-
-              {/* =================================================
-                  FREE DELIVERY
-              ================================================== */}
 
               <div className="mt-4 flex min-h-[65px] items-center gap-3 rounded-[7px] bg-[#E4CEB0] px-3.5 py-3">
 
@@ -867,9 +794,6 @@ export default function CheckoutPage() {
 
       </section>
 
-      {/* =========================================================
-          FOOTER
-      ========================================================== */}
 
       <footer className="mt-10 bg-[#38251A] px-6 py-8 text-[#FFFDF8]">
 
