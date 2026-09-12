@@ -26,6 +26,8 @@ const inspiration = Inspiration({
   weight: "400",
 });
 
+
+
 export const metadata: Metadata = {
   title: "Morrow Coffee",
   description: "Slow mornings. Better coffee.",
